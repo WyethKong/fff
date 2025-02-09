@@ -18,7 +18,7 @@ public abstract class Fighter<T> : MonoBehaviour
         switch (context.action.name)
         {
             case ("Move"):
-
+                
                 return;
             default:
                 Debug.LogWarning("Action '" + context.action.name + "' is unknown!");

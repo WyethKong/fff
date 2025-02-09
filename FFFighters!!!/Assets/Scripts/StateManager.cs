@@ -14,12 +14,16 @@ public class StateManager<T>
 
     public State<T> GetState()
     {
+        // Return the given state
         return currentState;
     }
     public void SetState(State<T> newState)
     {
+        // Exit current state
         if (currentState != null)
             currentState.Exit(owner, this);
+
+        // Set and Enter new state
         currentState = newState;
         currentState.Enter(owner, this);
     }
@@ -32,9 +36,10 @@ public class StateManager<T>
 
 public abstract class State<T>
 {
-    public abstract void Enter(T owner, StateManager<T> stateManager);
-    public abstract void Update(T owner, StateManager<T> stateManager);
-    public abstract void Exit(T owner, StateManager<T> stateManager);
+    // Base methods for all states
+    public abstract void Enter(T owner, StateManager<T> stateManager);  // Occurs when changing to this state
+    public abstract void Exit(T owner, StateManager<T> stateManager);   // Occurs when changing to another state
+    public abstract void Update(T owner, StateManager<T> stateManager); // Occurs every FixedUpdate
 }
 
 public abstract class FighterState<Fighter> : State<Fighter>
